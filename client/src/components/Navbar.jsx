@@ -1,5 +1,5 @@
 import { assets } from "../assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useClerk, UserButton, useUser, useAuth } from "@clerk/clerk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -13,7 +13,7 @@ const Navbar = () => {
 
   // Access credit from Redux state
   const credit = useSelector((state) => state.app.credit);
-
+  const navigate = useNavigate();
   // Load credit data when user is signed in
   useEffect(() => {
     if (isSignedIn) {
@@ -45,9 +45,11 @@ const Navbar = () => {
           >
             Buy Credits
           </Link>
-          <p className="text-sm font-semibold text-gray-600">
-            Credits: {credit !== false ? credit : "Loading..."}
-          </p>
+          <button onClick={()=>navigate('/buy')} className="flex items-center gap-2 bg-blue-100 px-4 sm:px-7 py-1.5 sm:py-2.5 rounded-full hover:scale-110 transition-all duration-700">
+              <img className="w-5" src={assets.credit_icon} alt="" />
+              <p className="text-xs sm:text-sm font-medium text-gray-600">Credits : {credit}</p>
+            </button>
+            <p className="text-gray-600 max-sm:hidden">Hi, {user.fullName}</p>
           <UserButton />
         </div>
       ) : (

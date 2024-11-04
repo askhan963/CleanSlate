@@ -11,27 +11,28 @@ const BgSlider = () => {
   return (
     <div className="pb-10 md:py-20 mx-2">
       {/* title */}
-      <h1 className="mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text  text-transparent">
+      <h1 className="mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent">
         Remove Background With High <br /> Quality and Accuracy
       </h1>
-      <div className="relative w-full max-w-3xl overflow-hidden m-auto rounded-xl">
-        {/* background image */}
+      <div className="relative w-full max-w-lg m-auto rounded-xl overflow-hidden"> {/* Reduced max width */}
+        {/* Background image */}
         <img
           src={assets.image_w_bg}
-          style={{ clipPath: `inset(0 ${100.2 - sliderPosition}% 0 0)` }}
-          alt=""
+          className="w-full h-auto block"
+          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+          alt="Original Background Image"
         />
         {/* Foreground image */}
         <img
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute top-0 left-0 w-full h-auto block"
           src={assets.image_wo_bg}
           style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
-          alt=""
+          alt="Background Removed Image"
         />
 
-        {/* slider */}
+        {/* Slider */}
         <input
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-10 slider"
+          className="absolute top-1/2 left-0 w-full z-10 cursor-pointer opacity-75 slider transform -translate-y-1/2"
           type="range"
           min={0}
           max={100}

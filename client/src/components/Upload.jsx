@@ -2,7 +2,7 @@ import { assets } from "../assets/assets";
 import { useDispatch } from "react-redux";
 import { useAuth } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
-import { removeBg } from "../app/appSlice";
+import { setImage, removeBg } from "../app/appSlice";
 
 const Upload = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const Upload = () => {
   const handleImageUpload = (e) => {
     const uploadedImage = e.target.files[0];
     if (uploadedImage) {
+      dispatch(setImage(uploadedImage));  // Set the original image in Redux
       dispatch(removeBg({ image: uploadedImage, getToken, navigate }));
     }
   };
